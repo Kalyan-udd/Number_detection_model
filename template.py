@@ -23,7 +23,9 @@ list_of_files = [
     "logs/.gitkeep",
     "model_training/__init__.py",
     "model_training/model.py",
-    "setup.py"
+    "setup.py",
+    "Dockerfile",
+    ".dockerignore"
 ]
 
 for filepath in list_of_files:

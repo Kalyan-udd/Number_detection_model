@@ -48,3 +48,34 @@
 [2026-07-11 23:42:40,507]: template.py - making directory model_training
 [2026-07-11 23:42:40,507]: template.py - file already exist model_training/model.py
 [2026-07-11 23:42:40,507]: template.py - making file setup.py
+[2026-07-12 00:05:36,827]: template.py - making directory src
+[2026-07-12 00:05:36,827]: template.py - file already exist src/__init__.py
+[2026-07-12 00:05:36,827]: template.py - making directory src/Number_recognition_model
+[2026-07-12 00:05:36,827]: template.py - file already exist src/Number_recognition_model/__init__.py
+[2026-07-12 00:05:36,827]: template.py - making directory src/Number_recognition_model
+[2026-07-12 00:05:36,827]: template.py - file already exist src/Number_recognition_model/logger.py
+[2026-07-12 00:05:36,827]: template.py - making file requirements.txt
+[2026-07-12 00:05:36,827]: template.py - making directory logs
+[2026-07-12 00:05:36,827]: template.py - file already exist logs/.gitkeep
+[2026-07-12 00:05:36,827]: template.py - making directory model_training
+[2026-07-12 00:05:36,827]: template.py - file already exist model_training/__init__.py
+[2026-07-12 00:05:36,827]: template.py - making directory model_training
+[2026-07-12 00:05:36,827]: template.py - file already exist model_training/model.py
+[2026-07-12 00:05:36,827]: template.py - making file setup.py
+[2026-07-12 00:05:36,827]: template.py - making file Dockerfile
+[2026-07-12 00:05:56,729]: template.py - making directory src
+[2026-07-12 00:05:56,729]: template.py - file already exist src/__init__.py
+[2026-07-12 00:05:56,729]: template.py - making directory src/Number_recognition_model
+[2026-07-12 00:05:56,729]: template.py - file already exist src/Number_recognition_model/__init__.py
+[2026-07-12 00:05:56,729]: template.py - making directory src/Number_recognition_model
+[2026-07-12 00:05:56,729]: template.py - file already exist src/Number_recognition_model/logger.py
+[2026-07-12 00:05:56,729]: template.py - file already exist requirements.txt
+[2026-07-12 00:05:56,729]: template.py - making directory logs
+[2026-07-12 00:05:56,729]: template.py - file already exist logs/.gitkeep
+[2026-07-12 00:05:56,729]: template.py - making directory model_training
+[2026-07-12 00:05:56,729]: template.py - file already exist model_training/__init__.py
+[2026-07-12 00:05:56,729]: template.py - making directory model_training
+[2026-07-12 00:05:56,729]: template.py - file already exist model_training/model.py
+[2026-07-12 00:05:56,729]: template.py - file already exist setup.py
+[2026-07-12 00:05:56,729]: template.py - file already exist Dockerfile
+[2026-07-12 00:05:56,729]: template.py - making file .dockerignore
