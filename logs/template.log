@@ -1,0 +1,50 @@
+[2026-07-08 15:17:47,034]: template.py - making directory src
+[2026-07-08 15:17:47,034]: template.py - making file src/__init__.py
+[2026-07-08 15:17:47,035]: template.py - making directory src/Number_recognition_model
+[2026-07-08 15:17:47,035]: template.py - making file src/Number_recognition_model/__init__.py
+[2026-07-08 15:17:47,035]: template.py - making directory src
+[2026-07-08 15:18:15,719]: template.py - making directory src
+[2026-07-08 15:18:15,719]: template.py - file already exist src/__init__.py
+[2026-07-08 15:18:15,719]: template.py - making directory src/Number_recognition_model
+[2026-07-08 15:18:15,719]: template.py - file already exist src/Number_recognition_model/__init__.py
+[2026-07-08 15:18:15,719]: template.py - file already exist requirements.txt
+[2026-07-08 15:18:15,719]: template.py - making directory logs/.gitkeepmodel_training
+[2026-07-08 15:18:15,719]: template.py - making file logs/.gitkeepmodel_training/__init__.py
+[2026-07-08 15:18:15,719]: template.py - making directory model_training
+[2026-07-08 15:18:15,719]: template.py - making file model_training/model.py
+[2026-07-08 15:18:27,698]: template.py - making directory src
+[2026-07-08 15:18:27,699]: template.py - file already exist src/__init__.py
+[2026-07-08 15:18:27,699]: template.py - making directory src/Number_recognition_model
+[2026-07-08 15:18:27,699]: template.py - file already exist src/Number_recognition_model/__init__.py
+[2026-07-08 15:18:27,699]: template.py - file already exist requirements.txt
+[2026-07-08 15:18:27,699]: template.py - making directory logs/.gitkeepmodel_training
+[2026-07-08 15:18:27,699]: template.py - file already exist logs/.gitkeepmodel_training/__init__.py
+[2026-07-08 15:18:27,699]: template.py - making directory model_training
+[2026-07-08 15:18:27,699]: template.py - file already exist model_training/model.py
+[2026-07-08 15:18:27,699]: template.py - making file setup.py
+[2026-07-08 15:19:16,549]: template.py - making directory src
+[2026-07-08 15:19:16,549]: template.py - file already exist src/__init__.py
+[2026-07-08 15:19:16,549]: template.py - making directory src/Number_recognition_model
+[2026-07-08 15:19:16,549]: template.py - file already exist src/Number_recognition_model/__init__.py
+[2026-07-08 15:19:16,549]: template.py - file already exist requirements.txt
+[2026-07-08 15:19:16,549]: template.py - making directory logs
+[2026-07-08 15:19:16,549]: template.py - making file logs/.gitkeep
+[2026-07-08 15:19:16,549]: template.py - making directory model_training
+[2026-07-08 15:19:16,549]: template.py - making file model_training/__init__.py
+[2026-07-08 15:19:16,550]: template.py - making directory model_training
+[2026-07-08 15:19:16,550]: template.py - file already exist model_training/model.py
+[2026-07-08 15:19:16,550]: template.py - file already exist setup.py
+[2026-07-11 23:42:40,497]: template.py - making directory src
+[2026-07-11 23:42:40,506]: template.py - file already exist src/__init__.py
+[2026-07-11 23:42:40,506]: template.py - making directory src/Number_recognition_model
+[2026-07-11 23:42:40,506]: template.py - file already exist src/Number_recognition_model/__init__.py
+[2026-07-11 23:42:40,506]: template.py - making directory src/Number_recognition_model
+[2026-07-11 23:42:40,506]: template.py - making file src/Number_recognition_model/logger.py
+[2026-07-11 23:42:40,506]: template.py - making file requirements.txt
+[2026-07-11 23:42:40,507]: template.py - making directory logs
+[2026-07-11 23:42:40,507]: template.py - file already exist logs/.gitkeep
+[2026-07-11 23:42:40,507]: template.py - making directory model_training
+[2026-07-11 23:42:40,507]: template.py - file already exist model_training/__init__.py
+[2026-07-11 23:42:40,507]: template.py - making directory model_training
+[2026-07-11 23:42:40,507]: template.py - file already exist model_training/model.py
+[2026-07-11 23:42:40,507]: template.py - making file setup.py
