@@ -1,6 +1,6 @@
-def main():
-    print("Hello from numbers-recognition!")
+from fastapi import FastAPI
+import joblib
 
+app = FastAPI()
 
-if __name__ == "__main__":
-    main()
+@app
