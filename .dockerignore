@@ -1,0 +1,12 @@
+model_training/
+
+.toml
+.lock
+
+.venv
+
+__pycache__
+
+.gitignore
+
+.md

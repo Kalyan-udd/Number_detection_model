@@ -25,7 +25,8 @@ list_of_files = [
     "model_training/model.py",
     "setup.py",
     "Dockerfile",
-    ".dockerignore"
+    ".dockerignore",
+    "templates/home.html"
 ]
 
 for filepath in list_of_files:
@@ -35,7 +36,7 @@ for filepath in list_of_files:
         os.makedirs(filedir, exist_ok=True)
         logging.info(f"making directory {filedir}")
 
-    if (not os.path.exists(filepath)) or (os.path.getsize(filepath) != 0):
+    if (not os.path.exists(filepath)) or (os.path.getsize(filepath) == 0):
         with open(filepath, "w") as f:
             pass
             logging.info(f"making file {filepath}")

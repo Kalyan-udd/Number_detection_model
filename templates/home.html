@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Recognizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-indigo-950 to-slate-900 text-white min-h-screen flex flex-col items-center py-12 px-4 font-sans">
+
+    <!-- --- NEW MODEL INFO SECTION --- -->
+    <div class="max-w-5xl w-full mb-12">
+        <h1 class="text-5xl font-extrabold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 drop-shadow-lg">
+            Neural Network Digit Recognizer
+        </h1>
+        <p class="text-indigo-200 text-center mb-12 max-w-2xl mx-auto text-lg">
+            This application uses a deep learning model trained on the famous MNIST dataset. Draw a number below, and watch the neural network predict it in real-time.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Info Card 1 -->
+            <div class="bg-white/5 backdrop-blur-lg p-6 rounded-2xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:bg-white/10 transition-all duration-300">
+                <h3 class="text-xl font-bold text-cyan-400 mb-2 flex items-center gap-2">
+                    <span class="text-2xl">📊</span> The Dataset
+                </h3>
+                <p class="text-indigo-100/70 text-sm leading-relaxed">Trained on <strong>MNIST</strong>, a collection of 70,000 handwritten digits. Each image is a tiny 28x28 pixel grayscale grid.</p>
+            </div>
+            <!-- Info Card 2 -->
+            <div class="bg-white/5 backdrop-blur-lg p-6 rounded-2xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:bg-white/10 transition-all duration-300">
+                <h3 class="text-xl font-bold text-purple-400 mb-2 flex items-center gap-2">
+                    <span class="text-2xl">🧠</span> The Architecture
+                </h3>
+                <p class="text-indigo-100/70 text-sm leading-relaxed">Powered by a <strong>Sequential Dense Network</strong>. It flattens the 784 pixels into a 1D array and passes them through a 128-neuron hidden layer.</p>
+            </div>
+            <!-- Info Card 3 -->
+            <div class="bg-white/5 backdrop-blur-lg p-6 rounded-2xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:bg-white/10 transition-all duration-300">
+                <h3 class="text-xl font-bold text-emerald-400 mb-2 flex items-center gap-2">
+                    <span class="text-2xl">🎯</span> The Output
+                </h3>
+                <p class="text-indigo-100/70 text-sm leading-relaxed">The final layer uses a <strong>Softmax</strong> activation function to output 10 probabilities, picking the digit (0-9) with the highest confidence.</p>
+            </div>
+        </div>
+    </div>
+    <!-- --- END MODEL INFO SECTION --- -->
+
+    <!-- Existing Canvas Box (Now with Glassmorphism) -->
+    <div class="max-w-md w-full bg-white/10 backdrop-blur-xl rounded-3xl shadow-[0_0_40px_rgba(0,0,0,0.3)] p-8 flex flex-col items-center border border-white/20 relative overflow-hidden">
+        <!-- Decorative background glow -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-blue-500 rounded-full mix-blend-multiply filter blur-[64px] opacity-50"></div>
+        <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-500 rounded-full mix-blend-multiply filter blur-[64px] opacity-50"></div>
+
+        <h2 class="text-3xl font-bold mb-2 z-10 text-white">Test the Model</h2>
+        <p class="text-indigo-200 text-sm mb-8 text-center z-10">Draw in the center of the box below, then click Predict.</p>
+
+        <!-- The Canvas -->
+        <div class="p-2 bg-slate-900 rounded-2xl shadow-inner border border-white/10 z-10">
+            <canvas id="drawingCanvas" width="280" height="280" 
+                    class="rounded-xl cursor-crosshair touch-none">
+            </canvas>
+        </div>
+
+        <div class="flex gap-4 mt-8 w-full z-10">
+            <button id="clearBtn" class="flex-1 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold py-3 px-4 rounded-xl transition-all duration-200 backdrop-blur-md">
+                Clear
+            </button>
+            <button id="predictBtn" class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-[0_0_20px_rgba(14,165,233,0.4)] hover:shadow-[0_0_30px_rgba(14,165,233,0.6)] text-white font-bold py-3 px-4 rounded-xl transition-all duration-200">
+                Predict
+            </button>
+        </div>
+
+        <!-- Result Display Area -->
+        <div id="resultArea" class="mt-8 w-full text-center hidden z-10 bg-black/30 py-4 rounded-2xl border border-white/5">
+            <h2 class="text-indigo-300 text-sm uppercase tracking-widest font-semibold">Prediction</h2>
+            <div id="predictionText" class="text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-cyan-300 to-blue-500 my-2 drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]">-</div>
+            <p id="confidenceText" class="text-sm text-emerald-400 font-medium">Confidence: -</p>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Canvas Setup ---
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        // MNIST images have a black background and white numbers.
+        // We initialize the canvas with a black rectangle.
+        function clearCanvas() {
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Hide previous results
+            document.getElementById('resultArea').classList.add('hidden');
+        }
+        
+        // Setup pen properties
+        ctx.strokeStyle = "white"; // White ink
+        ctx.lineWidth = 20;        // Thick line so it survives being shrunk to 28x28
+        ctx.lineCap = "round";     // Smooth rounded edges
+
+        clearCanvas(); // Fill black initially
+
+        // --- 2. Drawing Logic ---
+        // Get exact mouse/touch position relative to the canvas
+        function getPosition(e) {
+            const rect = canvas.getBoundingClientRect();
+            // Handle both mouse and touch events
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const pos = getPosition(e);
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+            e.preventDefault(); // Prevent scrolling on touch screens
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const pos = getPosition(e);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            e.preventDefault();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        // Mouse Event Listeners
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        // Touch Event Listeners (for mobile)
+        canvas.addEventListener('touchstart', startDrawing, {passive: false});
+        canvas.addEventListener('touchmove', draw, {passive: false});
+        canvas.addEventListener('touchend', stopDrawing);
+
+        // --- 3. Sending Data to Backend ---
+        document.getElementById('clearBtn').addEventListener('click', clearCanvas);
+
+        document.getElementById('predictBtn').addEventListener('click', async () => {
+            const predictBtn = document.getElementById('predictBtn');
+            predictBtn.innerText = "Predicting...";
+            predictBtn.disabled = true;
+
+            // 1. Convert the canvas drawing into a raw Image Blob (a chunk of data)
+            canvas.toBlob(async (blob) => {
+                // 2. Package it exactly like an HTML form file upload
+                const formData = new FormData();
+                formData.append('file', blob, 'drawing.png');
+
+                try {
+                    // 3. Send it to your FastAPI server via POST request
+                    const response = await fetch('http://127.0.0.1:8000/predict', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    // 4. Update the UI with the results
+                    if (data.predicted_digit !== undefined) {
+                        document.getElementById('predictionText').innerText = data.predicted_digit;
+                        document.getElementById('confidenceText').innerText = `Confidence: ${(data.confidence * 100).toFixed(2)}%`;
+                        document.getElementById('resultArea').classList.remove('hidden');
+                    } else {
+                        alert(data.error || "Something went wrong.");
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert("Could not connect to the server. Is FastAPI running?");
+                } finally {
+                    predictBtn.innerText = "Predict";
+                    predictBtn.disabled = false;
+                }
+            }, 'image/png');
+        });
+    </script>
+</body>
+</html>
