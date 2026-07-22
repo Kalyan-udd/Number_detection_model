@@ -39,7 +39,6 @@ mdurl==0.1.2
 ml-dtypes==0.5.4
 namex==0.1.0
 nest-asyncio2==1.7.2
--e file:///home/Beta/Desktop/coding/Numbers_recognition
 numpy==2.5.1
 opt-einsum==3.4.0
 optree==0.19.1
